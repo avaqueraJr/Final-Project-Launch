@@ -18,16 +18,20 @@ def get_weather(city: str):
 
     # Parse the JSON response and get the relevant weather information
     weather_info = json.loads(response.text)
-    temp = weather_info["main"]["temp"]
-    feels_like = weather_info["main"]["feels_like"]
+    temp_celsius = weather_info["main"]["temp"]
+    temp_fahrenheit = (temp_celsius * 1.8) + 32
+    feels_like_celsius = weather_info["main"]["feels_like"]
+    feels_like_fahrenheit = (feels_like_celsius * 1.8) + 32
     humidity = weather_info["main"]["humidity"]
     description = weather_info["weather"][0]["description"]
 
     # Create a dictionary with the weather information
     weather_dict = {
         "city": city,
-        "temperature": temp,
-        "feels_like": feels_like,
+        "temperature_celsius": temp_celsius,
+        "temperature_fahrenheit": temp_fahrenheit,
+        "feels_like_celsius": feels_like_celsius,
+        "feels_like_fahrenheit": feels_like_fahrenheit,
         "humidity": humidity,
         "description": description
     }
