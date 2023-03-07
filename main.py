@@ -1,3 +1,6 @@
+
+    
+
 import tkinter as tk
 import requests
 import json
@@ -13,6 +16,8 @@ def get_weather(city):
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=imperial"
     response = requests.get(url)
 
+    
+
     # Parse the JSON response and get the relevant weather information
     weather_info = json.loads(response.text)
     temp = weather_info["main"]["temp"]
@@ -20,10 +25,13 @@ def get_weather(city):
     humidity = weather_info["main"]["humidity"]
     description = weather_info["weather"][0]["description"]
 
+    tempC: float = (5 / 9) * (temp - 32)
+
     # Create a dictionary with the weather information
     weather_dict = {
         "city": city,
         "temperature": temp,
+        "temperatureC": tempC,
         "feels_like": feels_like,
         "humidity": humidity,
         "description": description
@@ -39,7 +47,7 @@ def show_weather():
     output_label.config(text="")
 
     # Set the text of the output label with the weather data
-    output_label.config(text=f"City: {weather_dict['city']}\nTemperature: {weather_dict['temperature']}°F\nFeels Like: {weather_dict['feels_like']}°F\nHumidity: {weather_dict['humidity']}%\nDescription: {weather_dict['description']}")
+    output_label.config(text=f"City: {weather_dict['city']}\nTemperature: {weather_dict['temperature']}°F\nTemperature: {weather_dict['temperatureC']}°C\nFeels Like: {weather_dict['feels_like']}°F\nHumidity: {weather_dict['humidity']}%\nDescription: {weather_dict['description']}")
 
 #root window
 root= tk.Tk()
