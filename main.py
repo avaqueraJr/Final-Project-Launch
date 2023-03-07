@@ -41,24 +41,29 @@ def show_weather():
     # Set the text of the output label with the weather data
     output_label.config(text=f"City: {weather_dict['city']}\nTemperature: {weather_dict['temperature']}°F\nFeels Like: {weather_dict['feels_like']}°F\nHumidity: {weather_dict['humidity']}%\nDescription: {weather_dict['description']}")
 
+#root window
+root= tk.Tk()
+root.title('Weather')
+root.configure(bg='#0F2830')
+root.geometry('700x700')
+
 # Create the GUI window
-window = tk.Tk()
+window = tk.Frame(root, bg="#014751")
+window.place(relwidth=0.95, relheight=0.95, relx=0.025, rely=0.025)
 
 # Create the GUI widgets
-title_label = tk.Label(window, text="Weather App", font=("Arial", 24))
-city_label = tk.Label(window, text="Enter a city name:")
-city_entry = tk.Entry(window)
-submit_button = tk.Button(window, text="Get Weather", command=show_weather)
-output_label = tk.Label(window, font=("Arial", 16))
+title_label = tk.Label(window, text="Weather App", font=("Arial", 30), bg='#FFEEB4')
+city_label = tk.Label(window, text="Enter a city name:", font=("Arial", 24), bg='#00D37F',)
+city_entry = tk.Entry(window, font=("Arial", 24), bg='#AFF8C8')
+submit_button = tk.Button(window, text="Get Weather", command=show_weather, font=("Arial", 24),  bg='#D2C4FB')
+output_label = tk.Label(window, font=("Arial", 24), bg='#AFF8C8')
 
 # Add the widgets to the window
-title_label.pack()
-city_label.pack()
-city_entry.pack()
-submit_button.pack()
-output_label.pack()
+title_label.place(relx=0.5, rely=0.1, anchor=tk.CENTER)
+city_label.place(relx=0.5, rely=0.2, anchor=tk.CENTER)
+city_entry.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
+submit_button.place(relx=0.5, rely=0.75, anchor=tk.CENTER)
+output_label.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
 # Run the GUI event loop
 window.mainloop()
-
-
